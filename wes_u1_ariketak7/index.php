@@ -35,11 +35,11 @@
 
         <!--AlokatuData-->
         <br><br>
-        <label for="AlokatuData">Alokatu Data:</label>
-        <input type="date" id="AlokatuData" name="AlokatuData">
+        <label for="alokatuData">Alokatu Data:</label>
+        <input type="date" id="alokatuData" name="alokatuData">
 
-        <?php if (isset($_GET['AlokatuDataError'])) { ?>
-            <span style="color: red;"><?php echo $_GET['AlokatuDataError']; ?></span><br><br>
+        <?php if (isset($_GET['alokatuDataError'])) { ?>
+            <span style="color: red;"><?php echo $_GET['alokatuDataError']; ?></span><br><br>
         <?php } ?>
 
         <!--NAN-->
