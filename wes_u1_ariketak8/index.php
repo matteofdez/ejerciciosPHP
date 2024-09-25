@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulagailua</title>
+    <title>Ariketa 8</title>
 </head>
 <body>
     <h2>Kalkulagailua</h2>
