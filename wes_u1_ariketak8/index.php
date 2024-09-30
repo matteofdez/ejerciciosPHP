@@ -28,7 +28,7 @@ echo "<br>Batez besteko nota: " . $ikaslea->bataz_bestekoa();
 
 echo "<br>";
 echo "<br>";
-$langilea = new Langilea("Matteo", 2500);
+$langilea = new Langilea("Matteo", 2530);
 
 echo "Hasierako datuak:<br>";
 $langilea->erakutsiDatuak();
