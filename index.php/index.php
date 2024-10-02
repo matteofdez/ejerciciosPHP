@@ -75,18 +75,20 @@ foreach ($figuraArray as $figura) {
 $animaliarenSoinua = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["formulario2"])) {
- 
+
     $animaliaMota = $_POST["animalia"];
+    $animalia = null;
 
     if ($animaliaMota == "txakurra") {
         $animalia = new Txakurra();
     } elseif ($animaliaMota == "katua") {
         $animalia = new Katua();
     }
-   if (isset($animalia)) {
+    if ($animalia) {
         $animaliarenSoinua = $animalia->esan();
-    } 
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
