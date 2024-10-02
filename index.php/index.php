@@ -2,7 +2,7 @@
 <?php
 require_once 'klaseak.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["formulario1"])) {
     $izenAbizenak = htmlspecialchars($_POST['izenAbizenak']);
     $zeregina = htmlspecialchars($_POST['zeregina']);
 
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="irakaslea">Irakaslea</option>
         </select><br><br>
 
-        <input type="submit" value="Bidali">
+        <input type="submit" name="formulario1" value="Bidali">
     </form>
 </body>
 </html>
@@ -74,7 +74,8 @@ foreach ($figuraArray as $figura) {
 <?php
 $animaliarenSoinua = '';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["formulario2"])) {
+ 
     $animaliaMota = $_POST["animalia"];
 
     if ($animaliaMota == "txakurra") {
@@ -82,10 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif ($animaliaMota == "katua") {
         $animalia = new Katua();
     }
-
-    if (isset($animalia)) {
+   if (isset($animalia)) {
         $animaliarenSoinua = $animalia->esan();
-    }
+    } 
 }
 ?>
 
@@ -106,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="katua">Katua</option>
         </select>
         <br><br>
-        <input type="submit" value="Erakutsi Soinua">
+        <input type="submit" name="formulario2" value="Erakutsi Soinua">
     </form>
     <?php
     if ($animaliarenSoinua) {
