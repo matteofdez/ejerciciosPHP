@@ -8,8 +8,9 @@ header("Content-Type: application/json");
 $db = new DB();
 $db->konektatu();
 $taldeaDB = new TaldeaDB($db);
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
+//GET
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (isset($_GET["id"])) {
         $id = $_GET["id"];
         $respuesta = $taldeaDB->get($id);
@@ -19,6 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         echo json_encode($respuesta);
     }
 }
+//POST
 elseif ($_SERVER["REQUEST_METHOD"]== "POST"){
     // Dekodifikatu jasotako JSON informazioa.
     $aux = json_decode(file_get_contents('php://input'), true);
@@ -44,6 +46,7 @@ elseif ($_SERVER["REQUEST_METHOD"]== "POST"){
         }
     }
 }
+//PUT
 elseif($_SERVER["REQUEST_METHOD"]=="PUT"){ 
     $aux = json_decode(file_get_contents('php://input'), true);
        
@@ -55,6 +58,7 @@ elseif($_SERVER["REQUEST_METHOD"]=="PUT"){
             echo json_encode($respuesta);
         }
 }
+//DELETE
 elseif($_SERVER["REQUEST_METHOD"]=="DELETE"){
     $aux = json_decode(file_get_contents('php://input'), true);
         if($taldeaDB->delete($aux['id'])) {
@@ -66,5 +70,3 @@ elseif($_SERVER["REQUEST_METHOD"]=="DELETE"){
             echo json_encode($respuesta);
         }
 }
-
-
