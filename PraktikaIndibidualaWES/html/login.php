@@ -41,17 +41,7 @@
             header("Location: horriPribatua1.php");
         }
     }
-
-
-
-
-
     ?>
-
-
-
-
-
     <form method="POST" action="login.php">
         <label>Erabiltzailea:</label>
         <input type="text" name="email" required>
