@@ -47,10 +47,22 @@ class DB
 
     public function insert($userName, $pasahitza)
     {
-        $stmt = $this->konexioa->prepare("INSERT INTO e2ariketa1 (email, pasahitza) VALUES (?,?)");
+        $stmt = $this->konexioa->prepare("INSERT INTO erabiltzaileak (email, pasahitza) VALUES (?,?)");
         $stmt->bind_param("ss", $userName, $pasahitza);
         $emaitza = $stmt->execute();
         $stmt->close();
         return $emaitza;
+    }
+
+    public function select($email)
+    {
+        $stmt = $this->konexioa->prepare("SELECT * FROM erabiltzaileak WHERE email LIKE ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $emaitza = $stmt->get_result();
+
+        $row = $emaitza->fetch_assoc();
+      
+        return $row;
     }
 }

@@ -12,9 +12,9 @@
     $db = new DB();
     $db->konektatu();
 
-    $emailEzBeteta;
-    $passwordEzBeteta;
-    $passwordEzBerdinak;
+    $emailEzBeteta = "";
+    $passwordEzBeteta = "";
+    $passwordEzBerdinak = "";
     $email;
     $password;
     $password2;
@@ -37,7 +37,9 @@
         }
 
         if (empty($emailEzBeteta) && empty($passwordEzBerdinak) && empty($passwordEzBeteta)) {
-            $db->insert($email, $password);
+            $hash = password_hash($password, PASSWORD_DEFAULT);
+
+            $db->insert($email, $hash);
         }
     }
     ?>
@@ -45,17 +47,30 @@
     <form method="POST" action="newUser.php">
         <label>Erabiltzailea:</label>
         <input type="text" name="email">
+        <?php if (!empty($emailEzBeteta)) { ?>
+            <span style="color: red;"><?php echo $emailEzBeteta ?></span>
+        <?php } ?>
         <br>
         <br>
         <label>Pasahitza:</label>
         <input type="password" name="password">
+        <?php if (!empty($passwordEzBeteta)) { ?>
+            <span style="color: red;"><?php echo $passwordEzBeteta ?></span>
+        <?php } ?>
         <br>
         <br>
         <label>Pasahitza sartu berriro:</label>
         <input type="password" name="password2">
+        <?php if (!empty($passwordEzBeteta)) { ?>
+            <span style="color: red;"><?php echo $passwordEzBeteta ?></span>
+        <?php } ?>
+        <?php if (!empty($passwordEzBerdinak)) { ?>
+            <span style="color: red;"><?php echo $passwordEzBerdinak ?></span>
+        <?php } ?>
         <br>
         <br>
         <button type="submit">Sartu</button>
+        <a href="login.php" class="btn">Ir al login</a>
     </form>
 </body>
 
