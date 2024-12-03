@@ -62,7 +62,19 @@ class DB
         $emaitza = $stmt->get_result();
 
         $row = $emaitza->fetch_assoc();
-      
+
+        return $row;
+    }
+
+    public function getID($id)
+    {
+        $stmt = $this->konexioa->prepare("SELECT * FROM erabiltzaileak WHERE id LIKE ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $emaitza = $stmt->get_result();
+
+        $row = $emaitza->fetch_assoc();
+
         return $row;
     }
 }

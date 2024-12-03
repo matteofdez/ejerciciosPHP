@@ -9,6 +9,8 @@
     <h1>Erabiltzaile berria sortu</h1>
     <?php
     require "../db/db.php";
+    require "utilidades.php";
+    util();
     $db = new DB();
     $db->konektatu();
 
@@ -18,6 +20,10 @@
     $email;
     $password;
     $password2;
+
+    if (isset($_SESSION['user_id'])) {
+        header("Location: horriPribatua1.php");
+    }
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST["email"])) {
