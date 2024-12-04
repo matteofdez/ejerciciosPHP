@@ -11,8 +11,6 @@
     require "../db/db.php";
     require "utilidades.php";
     util();
-    session_destroy();
-    session_start();
 
     $db = new DB();
     $db->konektatu();
@@ -53,11 +51,17 @@
     ?>
     <form method="POST" action="login.php">
         <label>Erabiltzailea:</label>
-        <input type="text" name="email" required>
+        <input type="text" name="email">
+        <?php if (!empty($emailEzBeteta)) { ?>
+            <span style="color: red;"><?php echo $emailEzBeteta ?></span>
+        <?php } ?>
         <br>
         <br>
         <label>Pasahitza:</label>
-        <input type="password" name="password" required>
+        <input type="password" name="password">
+        <?php if (!empty($passwordEzBeteta)) { ?>
+            <span style="color: red;"><?php echo $passwordEzBeteta ?></span>
+        <?php } ?>
         <br>
         <br>
         <button type="submit">Sartu</button>

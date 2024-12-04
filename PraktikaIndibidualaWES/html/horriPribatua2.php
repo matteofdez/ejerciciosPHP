@@ -12,9 +12,8 @@ if (!isset($_SESSION['user_id'])) {
     $id = htmlspecialchars($_SESSION['user_id']);
     $erabiltzailea = $db->getID($id);
     echo "Kaixo " . $erabiltzailea['email'];
-    echo " Hau horri pribatua da.";
+    echo " Hau horri pribatua 2 da.";
 }
-
 
 ?>
 <!DOCTYPE html>
@@ -29,8 +28,8 @@ if (!isset($_SESSION['user_id'])) {
 <body>
     <br>
     <br>
+    <a href="horriPribatua1.php" class="btn">Atzera</a>
     <a href="sessionItxi.php" class="btn">Atera</a>
-    <a href="horriPribatua2.php" class="btn">Joan horri pribatuta 2</a>
 </body>
 
 </html>
