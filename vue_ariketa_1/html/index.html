@@ -10,14 +10,17 @@
 <body>
 
     <div id="app">
+        <button v-on:click="minusToCart" class="btn btn-primary">-</button>
         <input v-model="produktuak" type="text" class="form-control">
 
         <button v-on:click="addToCart" class="btn btn-primary">+</button>
-<ul>
-    <li v-for="zeregina in zereginak">
-<span v-text="zeregina.title"></span>
-    </li>
-</ul>
+        <ul>
+            <li v-for="p in produk">
+                <button v-on:click="minusToCart" class="btn btn-primary">-</button>
+                   <span v-text="p.title"></span>
+                   <button v-on:click="addToCart" class="btn btn-primary">+</button>
+            </li>
+        </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="../js/main.js"></script>
