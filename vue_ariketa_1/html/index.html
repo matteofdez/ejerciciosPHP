@@ -10,15 +10,20 @@
 <body>
 
     <div id="app">
-        <button v-on:click="minusToCart" class="btn btn-primary">-</button>
-        <input v-model="produktuak" type="text" class="form-control">
+        <h1>Zerrenda: </h1>
+        <input v-model="produktuak" type="text" class="form-control" @keyup.enter="addToCart">
+        <button v-on:click="addToCart" class="btn btn-primary">Gehitu</button>
 
-        <button v-on:click="addToCart" class="btn btn-primary">+</button>
         <ul>
-            <li v-for="p in produk">
-                <button v-on:click="minusToCart" class="btn btn-primary">-</button>
-                   <span v-text="p.title"></span>
-                   <button v-on:click="addToCart" class="btn btn-primary">+</button>
+            <li v-for="(p, index) in produk">
+                <button v-on:click="kendu(index)" class="btn btn-primary">-</button>
+                <input type="checkbox" v-model="p.erosita" class="form-check-input" v-if="p.erosita">
+                <span class="bi bi-square" @click="toggleCompleted(index)" v-else>
+                </span>
+
+                <span v-text="p.title"> {{ p.title }}</span>
+                <span v-text="p.zenbakia">{{ p.zenbakia }}</span>
+                <button v-on:click="gehitu(index)" class="btn btn-secondary">+</button>
             </li>
         </ul>
     </div>

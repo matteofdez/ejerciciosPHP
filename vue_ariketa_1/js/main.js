@@ -1,18 +1,27 @@
 var app = new Vue({
     el: '#app',
-    data:{
+    data: {
         produktuak: "",
-        produk: [ {title:""}]        
+        zenbakiak: "1",
+        produk: [],
+        erosita: true
     },
-    methods:{
-        addToCart: function(){
+    methods: {
+        addToCart: function () {
+            if (this.produktuak.length <= 1) 
+                return alert("Produktua ezin da hutsik egon.");
+
             this.produk.push({
-                title: this.produktuak
+                title: this.produktuak,
+                zenbakia: this.zenbakiak,
+                completed: false
             });
-            this.produktuak="";
         },
-        minusToCart: function(index) {
-            this.produk.splice(index, 1);
+        gehitu: function (index) {
+            this.produk[index].zenbakia++;
+        },
+        kendu: function (index) {
+            this.produk[index].zenbakia--;
         }
     }
 })
