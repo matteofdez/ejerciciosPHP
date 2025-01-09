@@ -10,25 +10,53 @@
 <body>
 
     <div id="app">
-        <h1>Zerrenda: </h1>
-        <input v-model="produktuak" type="text" class="form-control" @keyup.enter="addToCart">
-        <button v-on:click="addToCart" class="btn btn-primary">Gehitu</button>
+        <label for="produktuak"><h1>Zerrenda:</h1></label>
+        <input type="text" id="produktuak" v-model="produktuak" @keyup.enter="addToCart">
 
-        <ul>
-            <li v-for="(p, index) in produk">
+        <button @click="addToCart">Gehitu</button>
+            <li v-for="(p, index) in produk" v-if="!(p.erosita)">
+                <button type="button" class="btn btn-primary" @click="kendu(index)">-</button>
+                <input type="checkbox" v-model="p.erosita" class="form-check-input">
+                {{ p.produktuak }} {{ p.zenbakiak }}
+                <button type="button" class="btn btn-primary" @click="gehitu(index)">+</button>
+            </li>
+        <h1>Erosita: </h1>
+            <li v-for="(p, index) in produk" v-if="(p.erosita)">
                 <button v-on:click="kendu(index)" class="btn btn-primary">-</button>
-                <input type="checkbox" v-model="p.erosita" class="form-check-input" v-if="p.erosita">
-                <span class="bi bi-square" @click="toggleCompleted(index)" v-else>
-                </span>
-
-                <span v-text="p.title"> {{ p.title }}</span>
-                <span v-text="p.zenbakia">{{ p.zenbakia }}</span>
+                <input type="checkbox" v-model="p.erosita" class="form-check-input">
+                {{ p.produktuak }} {{ p.zenbakiak }}
                 <button v-on:click="gehitu(index)" class="btn btn-secondary">+</button>
             </li>
-        </ul>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+var app = new Vue({
+    el: '#app',
+    data: {
+        produktuak: '',
+        zenbakiak: 1,
+        produk: [],
+        erosita: false
+    },
+    methods: {
+        addToCart: function () {
+            if (this.produktuak.length <= 1) 
+                return alert("Produktua ezin da hutsik egon.");
+
+            this.produk.push({
+                produktuak: this.produktuak,
+                zenbakiak: this.zenbakiak
+            });
+        },
+        gehitu: function (index) {
+            this.produk[index].zenbakiak++;
+        },
+        kendu: function (index) {
+            this.produk[index].zenbakiak--;
+        }
+    }
+});
+    </script>
 </body>
 
 </html>
