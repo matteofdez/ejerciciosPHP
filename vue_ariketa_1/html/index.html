@@ -10,52 +10,61 @@
 <body>
 
     <div id="app">
-        <label for="produktuak"><h1>Zerrenda:</h1></label>
+        <label for="produktuak">
+            <h1>Zerrenda:</h1>
+        </label>
         <input type="text" id="produktuak" v-model="produktuak" @keyup.enter="addToCart">
 
         <button @click="addToCart">Gehitu</button>
-            <li v-for="(p, index) in produk" v-if="!(p.erosita)">
-                <button type="button" class="btn btn-primary" @click="kendu(index)">-</button>
-                <input type="checkbox" v-model="p.erosita" class="form-check-input">
-                {{ p.produktuak }} {{ p.zenbakiak }}
-                <button type="button" class="btn btn-primary" @click="gehitu(index)">+</button>
-            </li>
+        <li v-for="(p, index) in produk" v-if="!(p.erosita)">
+            <button type="button" class="btn btn-primary" @click="kendu(index)">-</button>
+            <input type="checkbox" v-model="p.erosita" class="form-check-input">
+            {{ p.produktuak }} {{ p.zenbakiak }}
+            <button type="button" class="btn btn-primary" @click="gehitu(index)">+</button>
+        </li>
         <h1>Erosita: </h1>
-            <li v-for="(p, index) in produk" v-if="(p.erosita)">
-                <button v-on:click="kendu(index)" class="btn btn-primary">-</button>
-                <input type="checkbox" v-model="p.erosita" class="form-check-input">
-                {{ p.produktuak }} {{ p.zenbakiak }}
-                <button v-on:click="gehitu(index)" class="btn btn-secondary">+</button>
-            </li>
+        <li v-for="(p, index) in produk" v-if="(p.erosita)">
+            <button v-on:click="kendu(index)" class="btn btn-primary">-</button>
+            <input type="checkbox" v-model="p.erosita" class="form-check-input">
+            {{ p.produktuak }} {{ p.zenbakiak }}
+            <button v-on:click="gehitu(index)" class="btn btn-secondary">+</button>
+        </li>
+        <button type="button" class="btn btn-secondary" @click="reset(index)">Reset</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
-var app = new Vue({
-    el: '#app',
-    data: {
-        produktuak: '',
-        zenbakiak: 1,
-        produk: [],
-        erosita: false
-    },
-    methods: {
-        addToCart: function () {
-            if (this.produktuak.length <= 1) 
-                return alert("Produktua ezin da hutsik egon.");
+        var app = new Vue({
+            el: '#app',
+            data: {
+                produktuak: '',
+                zenbakiak: 1,
+                produk: [],
+                erosita: false
+            },
+            methods: {
+                addToCart: function () {
+                    if (this.produktuak.length <= 1)
+                        return alert("Produktua ezin da hutsik egon.");
 
-            this.produk.push({
-                produktuak: this.produktuak,
-                zenbakiak: this.zenbakiak
-            });
-        },
-        gehitu: function (index) {
-            this.produk[index].zenbakiak++;
-        },
-        kendu: function (index) {
-            this.produk[index].zenbakiak--;
-        }
-    }
-});
+                    this.produk.push({
+                        produktuak: this.produktuak,
+                        zenbakiak: this.zenbakiak
+                    });
+                },
+                gehitu: function (index) {
+                    this.produk[index].zenbakiak++;
+                },
+                kendu: function (index) {
+                    this.produk[index].zenbakiak--;
+                },
+                reset: function () {
+                    this.produk.forEach((item) => {
+                        item.zenbakiak = 1;
+                        item.erosita = false;
+                    });
+                }
+            }
+        });
     </script>
 </body>
 
