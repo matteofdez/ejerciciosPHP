@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ariketa 1</title>
+    <title>Ariketa 2</title>
 </head>
 
 <body>
-
     <div id="app">
         <label for="produktuak">
             <h1>Zerrenda:</h1>
@@ -19,14 +18,18 @@
         <li v-for="(p, index) in produk" v-if="!(p.erosita)">
             <button type="button" class="btn btn-primary" @click="kendu(index)">-</button>
             <input type="checkbox" v-model="p.erosita" class="form-check-input">
-            {{ p.produktuak }} {{ p.zenbakiak }}
+            {{ p.produktuak }}
+            <p v-if="0 >= p.zenbakiak" style="color: rgb(255,0,0)"> {{ p.zenbakiak }} </p>
+            <p v-if="0 < p.zenbakiak" style="color: rgb(0, 255, 34)"> {{ p.zenbakiak }} </p>
             <button type="button" class="btn btn-primary" @click="gehitu(index)">+</button>
         </li>
         <h1>Erosita: </h1>
         <li v-for="(p, index) in produk" v-if="(p.erosita)">
             <button v-on:click="kendu(index)" class="btn btn-primary">-</button>
             <input type="checkbox" v-model="p.erosita" class="form-check-input">
-            {{ p.produktuak }} {{ p.zenbakiak }}
+            {{ p.produktuak }} 
+            <p v-if="0 >= p.zenbakiak" style="color: rgb(255,0,0)"> {{ p.zenbakiak }} </p>
+            <p v-if="0 < p.zenbakiak" style="color: rgb(0, 255, 34)"> {{ p.zenbakiak }} </p>
             <button v-on:click="gehitu(index)" class="btn btn-secondary">+</button>
         </li>
         <button type="button" class="btn btn-secondary" @click="reset(index)">Reset</button>
