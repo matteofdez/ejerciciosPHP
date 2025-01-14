@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariketa 2</title>
+</head>
+
+<body>
+    <div id="app">
+        <label for="zenbakia">
+            <h1>Zenbaki gustokoa:</h1>
+        </label>
+        <input type="text" id="zenbakia" v-model="zenbakia" @keyup.enter="addToCart">
+        <button @click="gehitu" :disabled="disabled">Gehitu</button>
+        <p v-for="(z, index) in zenbakiakArray">{{z}}</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                zenbakia: '',
+                zenbakiakArray: [],
+            },
+            computed: {
+                disabled() {
+                    return this.zenbakiakArray.includes(this.zenbakia);
+                }
+            },
+            methods: {
+                gehitu: function () {
+                    if (this.zenbakia.trim() !== '') {
+                        this.zenbakiakArray.push(this.zenbakia.trim());
+                        this.zenbakia = '';
+                    } else {
+                        return alert("Zenbakia ezin da hutsik egon.");
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
