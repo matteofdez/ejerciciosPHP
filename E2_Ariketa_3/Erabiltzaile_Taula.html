@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div id="vm" class="container">
+    <div id="app" class="container">
         <h1 class="text-center">Erabiltzaileen taula</h1>
         <table id="t1" class="table table-striped">
             <!-- Hemen taulako zutabeen izenburuak agertu behar dira -->
@@ -26,20 +26,15 @@
             </thead> 
 
             <!-- Hemen errenkada bakoitzeko pertsonaren datuak agertuko -->
-            <!-- <tbody>
-                <tr>
-                    <th>1</th>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <th>2</th>
-                    <td>...</td>
-                </tr>
-                <tr>
-                    <th>3</th>
-                    <td>...</td>
-                </tr>
-            </tbody> -->
+            <tr v-for="erabiltzaile in Erabiltzaile" :key="erabiltzaile.id">
+                <th>{{ erabiltzaile.id }}</th>
+                <td>{{ erabiltzaile.izena }}</td>
+                <td>{{ erabiltzaile.abizena }}</td>
+                <td>{{ erabiltzaile.NAN }}</td>
+                <td>{{ erabiltzaile.jaiotzeData }}</td>
+                <td>{{ erabiltzaile.adina }}</td>
+            </tr>
+        </tbody>
         </table>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
